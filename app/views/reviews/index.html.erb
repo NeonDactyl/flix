@@ -1,0 +1,13 @@
+<header>
+  <h1><%= link_to @movie.title, @movie %></h1>
+</header>
+<% @reviews.each do |review| %>
+<section>
+
+  <p><%= mail_to review.email, review.name %></p>
+  <p><%= link_to time_ago_in_words(review.updated_at), movie_review_path(review.movie, review) %></p>
+  <p><%= pluralize review.stars, 'star' %></p>
+  <p><%= review.comment %></p>
+
+</section>
+<% end %>

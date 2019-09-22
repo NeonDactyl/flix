@@ -1,0 +1,7 @@
+<section>
+  <h1><%= link_to @movie.title, movie_path(@review.movie) %></h1>
+  <p><%= mail_to @review.email, @review.name %></p>
+  <p><%= pluralize @review.stars, "Star" %></p>
+  <p><%= @review.comment %></p>
+
+</section>

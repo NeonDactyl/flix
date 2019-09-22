@@ -9,6 +9,8 @@ class Movie < ApplicationRecord
     message: "must reference a GIF, JPG, or PNG image"
   }
 
+  has_many :reviews, dependent: :destroy
+
   RATINGS = %w(G PG PG-13 R NC-17)
 
   validates :rating, inclusion: { in: RATINGS }
@@ -31,5 +33,9 @@ class Movie < ApplicationRecord
 
   def flop?
     total_gross.blank? || total_gross < 50000000
+  end
+
+  def average_stars
+    reviews.average(:stars)
   end
 end

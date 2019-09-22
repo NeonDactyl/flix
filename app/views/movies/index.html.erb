@@ -7,6 +7,9 @@
           <h2><%= link_to movie.title, movie %> (<%= movie.released_on.year %>)</h2>
           <h3><%= movie.cast %></h3>
         </header>
+        <p class="rating">
+          <%= format_average_stars(movie) %>
+        </p>
         <p>
           <%= truncate(movie.description, length: 150, separator: ' ') %>
         </p>
@@ -30,4 +33,3 @@
     </li>
   <% end %>
 </ul>
-
