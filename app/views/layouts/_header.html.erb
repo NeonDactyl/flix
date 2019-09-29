@@ -1,5 +1,11 @@
 <header id="page-header">
   <div id="masthead">
     <h1><%= link_to 'Flix', root_path %></h1>
+    <nav>
+      <p>
+        <%= link_to "Sign Up", new_user_path, class: "button" %> |
+        <%= link_to "Sign In", "#", class: "button" %>
+      </p>
+    </nav>
   </div>
 </header>
