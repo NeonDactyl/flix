@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resource :session
+  get "signup" => "users#new"
+  get "signin" => "session#new"
   resources :users
   root "movies#index"
   resources :movies do
