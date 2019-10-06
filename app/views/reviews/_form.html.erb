@@ -3,14 +3,6 @@
   <fieldset>
     <ol>
       <li class="required">
-        <%= f.label :name %>
-        <%= f.text_field :name, autofocus: true %>
-      </li>
-      <li class="required">
-        <%= f.label :email %>
-        <%= f.text_field :email %>
-      </li>
-      <li class="required">
         <%= f.label :stars %>
         <%= f.select :stars, Review::STARS, prompt: "Pick one" %>
       </li>

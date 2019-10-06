@@ -2,6 +2,18 @@
 <p>
 <%= @user.email %>
 </p>
+<% if @reviews.any? %>
+  <h3>Reviews Written</h3>
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <%= link_to review.movie.title, review.movie %>
+        <p><%= review.comment %></p>
+        <p><%= link_to(time_ago_in_words(review.created_at), movie_review_path(review.movie.id, review.id))%></p>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
 <footer>
   <nav>
     <% if current_user?(@user) %>
