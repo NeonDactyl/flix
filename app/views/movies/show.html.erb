@@ -28,6 +28,17 @@
       </ul>
     <% end %>
 
+    <% if @genres.any? %>
+      <h3>Categories</h3>
+      <ul>
+        <% @genres.each do |genre| %>
+        <li>
+          <%= link_to genre.name.capitalize, genre %>
+        </li>
+        <% end %>
+      </ul>
+    <% end %>
+
   </header>
 
   <p>

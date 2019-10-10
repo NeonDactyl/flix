@@ -1,0 +1,13 @@
+<h3>
+  <%= @genre.name.capitalize + " Film List"%>
+</h3>
+
+<ul>
+
+  <% @movies.each do |movie| %>
+    <li>
+      <%= link_to movie.title, movie %>
+    </li>
+  <% end %>
+
+</ul>
