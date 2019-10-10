@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @likers = @review.likers
   end
 
   def new

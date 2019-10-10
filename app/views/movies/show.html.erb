@@ -4,6 +4,30 @@
     <h1><%= @movie.title %></h1>
     <h2><%= format_average_stars(@movie) %></h2>
     <h2>Released: <%= @movie.released_on %></h2>
+    <p>
+      <%= pluralize(@fans.size, 'fan') %>
+    </p>
+
+    <% if current_user %>
+      <% if @current_fav %>
+        <%= button_to "Unfavorite", movie_favorite_path(@movie, @current_fav), method: :delete %>
+      <% else %>
+        <%= button_to "Favorite", movie_favorites_path(@movie) %>
+      <% end %>
+    <% end %>
+
+
+    <% if @fans.any? %>
+      <h3>Fans</h3>
+      <ul>
+        <% @fans.each do |user| %>
+          <li>
+            <%= link_to user.name, user %>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+
   </header>
 
   <p>
@@ -28,6 +52,8 @@
   <p>
     <%= format_total_gross(@movie) %>
   </p>
+
+
 
   <footer>
     <nav>

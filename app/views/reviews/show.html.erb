@@ -3,5 +3,18 @@
   <p><%= link_to @review.user.name, @review.user %></p>
   <p><%= pluralize @review.stars, "Star" %></p>
   <p><%= @review.comment %></p>
+  <p>
+    <%= pluralize(@likers.size, 'like') %>
+  </p>
+  <% if @likers.any? %>
+    <h3>Likes</h3>
+    <ul>
+      <% @likers.each do |user| %>
+        <li>
+          <%= link_to user.name, user %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
 
 </section>
