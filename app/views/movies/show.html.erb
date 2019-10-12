@@ -1,3 +1,5 @@
+<% content_for(:title, @movie.title) %>
+
 <article id="movie" class="movie">
   <header>
     <%= image_for(@movie) %>
@@ -27,8 +29,6 @@
           <% end %>
         </ul>
       <% end %>
-    <% end %>
-    <% content_for(:side) do %>
       <% if @genres.any? %>`
         <h3>Categories</h3>
         <ul>

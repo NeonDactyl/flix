@@ -1,28 +1,32 @@
+<% content_for(:title, @user.name) %>
+
 <h1>Profile for <%= @user.name %></h1>
 <p>
 <%= @user.email %>
 </p>
-<% if @reviews.any? %>
-  <h3>Reviews Written</h3>
-  <ul>
-    <% @reviews.each do |review| %>
-      <li>
-        <%= link_to review.movie.title, review.movie %>
-        <p><%= review.comment %></p>
-        <p><%= link_to(time_ago_in_words(review.created_at), movie_review_path(review.movie.id, review.id))%></p>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
-<% if @favorite_movies.any? %>
-  <h3>Favorite Movies</h3>
-  <ul>
-   <% @favorite_movies.each do |movie| %>
-     <li>
-       <%= link_to movie.title, movie %>
-     </li>
-   <% end %>
-  </ul>
+<% content_for(:side) do %>
+  <% if @reviews.any? %>
+    <h3>Reviews Written</h3>
+    <ul>
+      <% @reviews.each do |review| %>
+        <li>
+          <%= link_to review.movie.title, review.movie %>
+          <p><%= review.comment %></p>
+          <p><%= link_to(time_ago_in_words(review.created_at), movie_review_path(review.movie.id, review.id))%></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+  <% if @favorite_movies.any? %>
+    <h3>Favorite Movies</h3>
+    <ul>
+     <% @favorite_movies.each do |movie| %>
+       <li>
+         <%= link_to movie.title, movie %>
+       </li>
+     <% end %>
+    </ul>
+  <% end %>
 <% end %>
 <footer>
   <nav>
