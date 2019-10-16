@@ -3,7 +3,7 @@ class Movie < ApplicationRecord
   validates :title, :released_on, :duration, presence: true
   validates :description, length: {minimum: 25}
   validates :total_gross, numericality: {greater_than_or_equal_to: 0}
-
+  validates :slug, uniqueness: true
   validates :image_file_name, allow_blank: true, format: {
     with:   /\w+\.(gif|jpe?g|png)\z/i,
     message: "must reference a GIF, JPG, or PNG image"
@@ -14,6 +14,8 @@ class Movie < ApplicationRecord
   has_many :fans, through: :favorites, source: :user
   has_many :characterizations, dependent: :destroy
   has_many :genres, through: :characterizations
+
+  before_validation :generate_slug
 
   RATINGS = %w(G PG PG-13 R NC-17)
 
@@ -35,5 +37,13 @@ class Movie < ApplicationRecord
 
   def average_stars
     reviews.average(:stars)
+  end
+
+  def to_param
+    slug
+  end
+
+  def generate_slug
+    self.slug ||= [title.parameterize, released_on.year].join("-")
   end
 end
