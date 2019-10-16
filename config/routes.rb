@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "signout" => "sessions#destroy"
   resources :users
   root "movies#index"
+
+  get "movies/filter/:scope", to: "movies#index", as: "filtered_movies"
+
   resources :movies do
     resources :reviews do
       resources :likes

@@ -4,7 +4,18 @@ class MoviesController < ApplicationController
   before_action :require_admin, except: [:index, :show]
 
   def index
-    @movies = Movie.released
+    case params[:scope]
+    when "upcoming"
+      @movies = Movie.unreleased
+    when "recent"
+      @movies = Movie.recent
+    when "flops"
+      @movies = Movie.flops
+    when "hits"
+      @movies = Movie.hits
+    else
+      @movies = Movie.released
+    end
   end
 
   def show
